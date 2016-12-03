@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hrimnir</title>
+    <link rel="stylesheet" href="/static/css/base.css">
+  </head>
+
+  <body>
+        <div class="row">
+              <div class="col-10">
+                  <a id="the-story" href="{% url 'the_story' %}">Hrimnir - the story</a>
+              </div>
+              <div class="col-2">
+                <form>
+                  <input id="search-form" type="text" name="search" placeholder="Search..">
+                </form>
+              </div>
+        </div>
+
+
+
+
+    {% block content %}
+
+    {% endblock %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+  </body>
+</html>
