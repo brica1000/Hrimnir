@@ -15,12 +15,10 @@ ul {
     background-color: #f8f8f8;
 }
 
+
 * {
     box-sizing: border-box;
 }
-
-
-
 
 /*
 For mobile phones:
@@ -43,10 +41,14 @@ This should lay out in a stack on a phone
       position: relative;
       top: 50px;
       width: 102%;
+      z-index: -1;
     }
 
     .desktop {
       display: none;
+    }
+    .spacer {
+      height: 100px;
     }
 }
 
@@ -79,6 +81,9 @@ This should lay out in a stack on a phone
     }
     .bottom {
       display: none;
+    }
+    .spacer {
+      height: 50px;
     }
 }
 
