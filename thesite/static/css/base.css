@@ -32,14 +32,21 @@ This should lay out in a stack on a phone
 }
 
 @media only screen and (max-width: 500px) {
-
+    /* For Mobile: */
     .nav-bar.top {
       background-color: pink;
-      position: static;
+      position: fixed;
     }
 
-    .nav-bar li {
-      display: inline-block;
+    .nav-bar.bottom {
+      background-color: grey;
+      position: relative;
+      top: 50px;
+      width: 102%;
+    }
+
+    .desktop {
+      display: none;
     }
 }
 
@@ -60,16 +67,18 @@ This should lay out in a stack on a phone
     .col-11 {width: 91.66%;}
     .col-12 {width: 100%;}
 
-    .nav-bar {
-       position: fixed;
-       list-style: none;
-       padding: 8px;
-       background-color: white;
-       text-align: center;
+    .nav-bar.desktop {
+      background-color: green;
+      position: fixed;
     }
-
     .nav-bar li {
       display: inline-block;
+    }
+    .top {
+      display: none;
+    }
+    .bottom {
+      display: none;
     }
 }
 

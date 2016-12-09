@@ -10,19 +10,28 @@
   </head>
 
   <body>
-        <div class="col-12 nav-bar centered">
+        <div class="col-12 nav-bar desktop centered">
             <ul>
-                    <li class="top"><a href="{% url 'the_story' %}">Hrimnir</a></li>
+                    <li><a href="{% url 'the_story' %}">Hrimnir</a></li>
                     <li><form><input id="search-form" type="text" name="search" placeholder="Search.."></form></li>
             </ul>
         </div>
 
+        <div class="col-12 nav-bar top centered">
+                <ul>
+                    <li><form><input id="search-form" type="text" name="search" placeholder="Search.."></form></li>
+                </ul>
+        </div>
+        <div class="col-12 nav-bar bottom centered">
+                <ul>
+                    <li><a href="{% url 'the_story' %}">Hrimnir</a></li>
+                </ul>
+        </div>
+  
 
 
-
-    {% block content %}
-
-    {% endblock %}
+              {% block content %}
+              {% endblock %}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
