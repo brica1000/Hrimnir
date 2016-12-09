@@ -35,7 +35,11 @@ html {
     box-sizing: border-box;
 }
 
-/* For mobile phones: */
+/*
+For mobile phones:
+http://www.w3schools.com/css/css_rwd_mediaqueries.asp
+This should lay out in a stack on a phone
+*/
 [class*="col-"] {
     width: 100%;
 }
@@ -58,11 +62,11 @@ html {
 [class*="col-"] {
     float: left;
     padding: 15px;
-    /* border: 1px solid red; */ 
+    /* border: 1px solid red; */
 }
 
 .row::after {
     content: "";
     clear: both;
-    display: block;
+    display: table;
 }
