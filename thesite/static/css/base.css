@@ -19,6 +19,9 @@ ul {
     box-sizing: border-box;
 }
 
+
+
+
 /*
 For mobile phones:
 http://www.w3schools.com/css/css_rwd_mediaqueries.asp
@@ -27,7 +30,22 @@ This should lay out in a stack on a phone
 [class*="col-"] {
     width: 100%;
 }
-@media only screen and (min-width: 768px) {
+
+@media only screen and (max-width: 500px) {
+
+    .nav-bar.top {
+      background-color: pink;
+      position: static;
+    }
+
+    .nav-bar li {
+      display: inline-block;
+    }
+}
+
+
+
+@media only screen and (min-width: 500px) {
     /* For desktop: */
     .col-1 {width: 8.33%;}
     .col-2 {width: 16.66%;}
@@ -41,6 +59,18 @@ This should lay out in a stack on a phone
     .col-10 {width: 83.33%;}
     .col-11 {width: 91.66%;}
     .col-12 {width: 100%;}
+
+    .nav-bar {
+       position: fixed;
+       list-style: none;
+       padding: 8px;
+       background-color: white;
+       text-align: center;
+    }
+
+    .nav-bar li {
+      display: inline-block;
+    }
 }
 
 [class*="col-"] {
@@ -55,7 +85,9 @@ This should lay out in a stack on a phone
     display: table;
 }
 
+
+
+
 .centered {
   text-align: center;
-  align-items: center;
 }
