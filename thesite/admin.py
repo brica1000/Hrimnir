@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Conglomerate, Product, Cert
 
-# Register your models here.
+admin.site.register(Conglomerate)
+admin.site.register(Product)
+admin.site.register(Cert)

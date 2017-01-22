@@ -1,0 +1,31 @@
+{% extends 'thesite/index.html' %}
+{% block content %}
+<div class="spacer"></div>
+
+
+
+{% for c in conglom %}
+<div class="row">
+            <div class="col-3 centered">
+              {{ c.name }}
+            </div>
+            <div class="col-9">
+              {{ c.text }}
+            </div>
+</div>
+{% endfor %}
+
+{% for p in products %}
+<div class="row">
+            <div class="col-3 centered">
+              {{ p.name }}
+            </div>
+            <div class="col-9">
+              {{ p.text }}
+            </div>
+</div>
+{% endfor %}
+
+
+
+{% endblock %}
