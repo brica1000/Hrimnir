@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 
 from .models import Conglomerate, Product
@@ -14,3 +14,7 @@ def database(request):
     conglom = Conglomerate.objects.all()
     products = Product.objects.all()
     return render(request, 'thesite/database.html', {'conglom':conglom, 'products': products,},)
+
+def modify_product(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    return render(request, 'thesite/modify_product.html', {'product':product})
