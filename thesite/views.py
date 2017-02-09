@@ -10,6 +10,9 @@ def index(request):
 def the_story(request):
     return render(request, 'thesite/the_story.html', {})
 
+def submit(request):
+    return render(request, 'thesite/submit.html', {})
+
 def database(request):
     conglom = Conglomerate.objects.all()
     products = Product.objects.all()
