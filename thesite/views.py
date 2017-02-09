@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 from .models import Conglomerate, Product
 
@@ -23,3 +24,7 @@ def database(request):
 def modify_product(request, pk):
     product = get_object_or_404(Product, pk=pk)
     return render(request, 'thesite/modify_product.html', {'product':product})
+
+def logout_view(request):
+    logout(request)
+    # Redirect to a success page.

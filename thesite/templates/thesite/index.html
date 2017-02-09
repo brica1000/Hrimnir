@@ -14,7 +14,16 @@
             <ul>
                     <li><a href="{% url 'the_story' %}">Hrimnir</a></li>
                     <li><form><input id="search-form" type="text" name="search" placeholder="Search.."></form></li>
+                    <div class="dropdown desktop">
+                        <button>User</button>
+                          <div class="dropdown-content">
+                              <a href="#">Link 1</a>
+                              <a href="#">Link 2</a>
+                              <a href="#">Link 3</a>
+                          </div>
+                    </div>
             </ul>
+
         </div>
         <div class="col-12 nav-bar top centered">
                 <ul>
@@ -25,6 +34,16 @@
                 <ul>
                     <li><a href="{% url 'the_story' %}">Hrimnir</a></li>
                 </ul>
+        </div>
+        <div class="col-12 nav-bar foot centered">
+                <div class="dropdown">
+                    <button>User</button>
+                      <div class="dropdown-content mobile">
+                          <a href="#">Link 1</a>
+                          <a href="#">Link 2</a>
+                          <a href="#">Link 3</a>
+                      </div>
+                </div>
         </div>
 
 
