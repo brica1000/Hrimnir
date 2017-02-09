@@ -1,13 +1,11 @@
 html {
     font-family: "Lucida Sans", sans-serif;
 }
-
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
-
 #search-form {
     box-sizing: border-box;
     border: 2px solid grey;
@@ -15,6 +13,12 @@ ul {
     background-color: #f8f8f8;
 }
 
+#login-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 * {
     box-sizing: border-box;
@@ -28,7 +32,6 @@ This should lay out in a stack on a phone
 [class*="col-"] {
     width: 100%;
 }
-
 @media only screen and (max-width: 500px) {
     /* For Mobile: */
     .nav-bar.top {
@@ -51,8 +54,6 @@ This should lay out in a stack on a phone
       height: 100px;
     }
 }
-
-
 
 @media only screen and (min-width: 500px) {
     /* For desktop: */
@@ -86,22 +87,20 @@ This should lay out in a stack on a phone
       height: 50px;
     }
 }
-
 [class*="col-"] {
     float: left;
     padding: 15px;
     /* border: 1px solid red; */
 }
-
 .row::after {
     content: "";
     clear: both;
     display: table;
 }
-
-
-
-
 .centered {
   text-align: center;
 }
+table.centered {
+    margin-left:auto;
+    margin-right:auto;
+  }

@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
 
 from .models import Conglomerate, Product
 
@@ -10,6 +11,7 @@ def index(request):
 def the_story(request):
     return render(request, 'thesite/the_story.html', {})
 
+@login_required
 def submit(request):
     return render(request, 'thesite/submit.html', {})
 
