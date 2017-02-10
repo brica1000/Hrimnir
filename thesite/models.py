@@ -7,6 +7,7 @@ class Conglomerate(models.Model):  # But each Conglomerate can make many product
     text = models.CharField(max_length=1000)
     last_updated = models.DateField()
     num_stars = models.IntegerField() # out of five
+    approved_edit = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -35,6 +36,7 @@ class Product(models.Model):  # Each product has one Conglomerate
     text = models.CharField(max_length=1000)
     last_updated = models.DateField()
     num_stars = models.IntegerField() # out of five
+    approved_edit = models.BooleanField(default=False)
 
     certificatons = models.ManyToManyField(Cert, blank=True)
 
