@@ -4,12 +4,22 @@
 
 
 
+<div>
+  <form method="post" action="">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="form-group">
+          <button type="submit" class="save btn btn-default">Save</button>
+      </div>
+  </form>
+</div>
 
+<!--
 <form method="post" action="">
     <table>
         {{ formset }}
     </table>
 </form>
-
+-->
 
 {% endblock %}

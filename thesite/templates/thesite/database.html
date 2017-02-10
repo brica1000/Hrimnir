@@ -7,7 +7,7 @@
 {% for c in conglom %}
 <div class="row">
             <div class="col-3 centered">
-              <a href="{% url 'modify_product' pk=c.pk %}">{{ c.name }}</a>
+              {{ c.name }}
             </div>
             <div class="col-9">
               {{ c.text }}
@@ -19,7 +19,7 @@
 {% for p in products %}
 <div class="row">
             <div class="col-3 centered">
-              {{ p.name }}
+              <a href="{% url 'modify_product' pk=p.pk %}">{{ p.name }}</a>
             </div>
             <div class="col-9">
               {{ p.text }}
