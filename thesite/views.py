@@ -50,7 +50,7 @@ def modify_product(request, pk):
 @login_required
 def modify_product(request, pk):
     conglomerate = Conglomerate.objects.get(pk=pk)
-    ConglomerateInlineFormSet = inlineformset_factory(Conglomerate, Product,  fields=('name',))  # From where are the fields?
+    ConglomerateInlineFormSet = inlineformset_factory(Conglomerate, Product,   fields=('name','category','text',))  # From where are the fields?
     if request.method == "POST":
         formset = ConglomerateInlineFormSet(request.POST, request.FILES, instance=conglomerate)
         if formset.is_valid():
