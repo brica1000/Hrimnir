@@ -37,6 +37,10 @@ textarea {
   margin: 0 40px 0 0;
 }
 
+.top-spacer {
+  margin-top: 26%;
+}
+
 #search-form {
     box-sizing: border-box;
     border: 2px solid grey;

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Conglomerate, Product, Cert
+from .models import Conglomerate, Product, Cert, Verification
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -7,7 +7,8 @@ class ProductAdmin(admin.ModelAdmin):
 
 class ConglomerateAdmin(admin.ModelAdmin):
     list_display = ('name', 'approved_edit')
-    
+
 admin.site.register(Conglomerate, ConglomerateAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Cert)
+admin.site.register(Verification)

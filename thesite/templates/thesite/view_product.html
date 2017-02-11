@@ -18,6 +18,20 @@
           <a href="{% url 'modify_product' pk=product.pk %}">{{ product.name }} - Submit edit</a>
       </div>
 </div>
+<div class="top-spacer">
+    <h3 class="centered">Verified by</h3>
+      {% for v in verifications %}
+      <div class="col-4 centered">
+        <label>{{ v.individual }} on {{ v.date }}</label>
+      </div>
+      <div class="col-8 mobile-centered">
+        <label>{{ v.who }}</label>
+      </div>
+      {% endfor %}
+<div>
+
+</div>
+
 
 
 

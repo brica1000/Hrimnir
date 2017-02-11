@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 
 class Conglomerate(models.Model):  # But each Conglomerate can make many products
@@ -30,6 +31,7 @@ class Cert(models.Model):
 
 class Product(models.Model):  # Each product has one Conglomerate
     conglomerate = models.ForeignKey(Conglomerate, on_delete=models.CASCADE, null=True, blank=True)
+    certificatons = models.ManyToManyField(Cert, blank=True)
 
     name = models.CharField(max_length=100)
     category = models.CharField(max_length=100)
@@ -38,10 +40,23 @@ class Product(models.Model):  # Each product has one Conglomerate
     num_stars = models.IntegerField() # out of five
     approved_edit = models.BooleanField(default=False)
 
-    certificatons = models.ManyToManyField(Cert, blank=True)
-
     def __str__(self):
         return self.name
 
     class Meta:
         ordering = ('name',)
+
+    pass
+
+
+class Verification(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    #conglomerate = models.ForeignKey(Conglomerate, on_delete=models.CASCADE)
+
+    individual = models.CharField(max_length=100, default="")
+    date = models.DateField(default=datetime.date.today())
+    who = models.CharField(max_length=1000, default="")
+    approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.individual

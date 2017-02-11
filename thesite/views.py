@@ -61,7 +61,8 @@ def modify_conglomerate(request, pk):
 
 def view_product(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    return render(request, 'thesite/view_product.html', {'product':product,})
+    verifications = product.verification_set.all()
+    return render(request, 'thesite/view_product.html', {'product':product, 'verifications': verifications})
 
 @login_required
 def modify_product(request, pk):
