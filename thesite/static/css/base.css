@@ -93,7 +93,7 @@ This should lay out in a stack on a phone
       display: none;
     }
     .spacer {
-      height: 100px;
+      height: 75px;
     }
 }
 
@@ -126,7 +126,7 @@ This should lay out in a stack on a phone
       display: none;
     }
     .spacer {
-      height: 50px;
+      height: 100px;
     }
 }
 [class*="col-"] {

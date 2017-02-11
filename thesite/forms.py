@@ -16,7 +16,7 @@ class ProductForm(forms.ModelForm):
 class ConglomerateForm(forms.ModelForm):
 
     class Meta:
-        model = Product
+        model = Conglomerate
         fields = ('name', 'category', 'text', 'last_updated', 'num_stars',)
         widgets = {
             'text': forms.fields.TextInput(attrs={'size': 400,}),

@@ -21,22 +21,6 @@ def the_story(request):
 def submit(request):
     return render(request, 'thesite/submit.html', {})
 
-"""
-@login_required
-def submit(request):
-    ProductInlineFormSet = inlineformset_factory(Product, Conglomerate, Cert, fields=('name',))  # From where are the fields?
-    if request.method == "POST":
-        formset = ProductInlineFormSet(request.POST, request.FILES)
-        if formset.is_valid():
-            formset.save()
-            # Do something. Should generally end with a redirect. For example:
-            return HttpResponseRedirect(reverse('thesite/submit.html'))
-    else:
-        formset = ProductInlineFormSet()
-    return render(request, 'thesite/submit.html', {'formset': formset})
-
-"""
-
 def database(request):
     conglom = Conglomerate.objects.all()
     products = Product.objects.all()
@@ -57,6 +41,11 @@ def modify_conglomerate(request, pk):
         formset = ConglomerateInlineFormSet(instance=conglomerate)
     return render(request, 'thesite/modify_conglomerate.html', {'formset': formset})
 """
+def view_conglomerate(request, pk):
+    conglomerate = get_object_or_404(Conglomerate, pk=pk)
+    products = conglomerate.product_set.all()
+    return render(request, 'thesite/view_conglomerate.html', {'conglomerate': conglomerate, 'products':products,})
+
 @login_required
 def modify_conglomerate(request, pk):
     conglomerate = get_object_or_404(Conglomerate, pk=pk)
@@ -69,6 +58,10 @@ def modify_conglomerate(request, pk):
     else:
         form = ConglomerateForm(instance=conglomerate)
     return render(request, 'thesite/modify_conglomerate.html', {'conglomerate': conglomerate,'form': form, 'products':products,})
+
+def view_product(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    return render(request, 'thesite/view_product.html', {'product':product,})
 
 @login_required
 def modify_product(request, pk):

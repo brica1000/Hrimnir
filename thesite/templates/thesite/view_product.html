@@ -1,0 +1,24 @@
+{% extends 'thesite/index.html' %}
+{% block content %}
+<div class="spacer"></div>
+
+<h3 class="centered">{{ product }}</h3>
+
+
+
+
+<div>
+      <div class="col-4 centered">
+        <label>{{ product.name }}</label>
+      </div>
+      <div class="col-8 mobile-centered">
+        <label>{{ product.text }}</label>
+      </div>
+      <div class="col-12 centered">
+          <a href="{% url 'modify_product' pk=product.pk %}">{{ product.name }} - Submit edit</a>
+      </div>
+</div>
+
+
+
+{% endblock %}
