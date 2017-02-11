@@ -11,5 +11,7 @@ urlpatterns = [
     url(r'^modify_product/(?P<pk>\d+)/$', views.modify_product, name='modify_product'),
     url(r'^view_conglomerate/(?P<pk>\d+)/$', views.view_conglomerate, name='view_conglomerate'),
     url(r'^modify_conglomerate/(?P<pk>\d+)/$', views.modify_conglomerate, name='modify_conglomerate'),
+    url(r'^submit_verification/(?P<pk>\d+)/$', views.submit_verification, name='submit_verification'),
+    url(r'^submit_verification_conglom/(?P<pk>\d+)/$', views.submit_verification_conglom, name='submit_verification_conglom'),
 
 ]

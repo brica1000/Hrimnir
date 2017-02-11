@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 from django.forms import inlineformset_factory
 
 from .models import Conglomerate, Product, Cert
-from thesite.forms import ProductForm, ConglomerateForm
+from thesite.forms import ProductForm, ConglomerateForm, VerificationForm, VerificationConglomForm
 
 
 def index(request):
@@ -75,6 +75,33 @@ def modify_product(request, pk):
     else:
         form = ProductForm(instance=product)
     return render(request, 'thesite/modify_product.html', {'form': form,})
+
+@login_required
+def submit_verification(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == "POST":
+        form = VerificationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('database'))
+    else:
+        form = VerificationForm(initial={'product': product, 'conglomerate': product.conglomerate})
+    return render(request, 'thesite/submit_verification.html', {'form': form, 'product': product})
+
+@login_required
+def submit_verification_conglom(request, pk):
+    conglomerate = get_object_or_404(Conglomerate, pk=pk)
+    if request.method == "POST":
+        form = VerificationConglomForm(request.POST)
+        form.fields['comment'].required = False
+        form.fields['comment_employ'].required = False
+        form.fields['comment_sustain'].required = False
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('database'))
+    else:
+        form = VerificationConglomForm(initial={'conglomerate': conglomerate})
+    return render(request, 'thesite/submit_verification_conglom.html', {'form': form, 'conglomerate':conglomerate})
 
 def logout_view(request):
     logout(request)

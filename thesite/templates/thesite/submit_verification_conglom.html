@@ -1,0 +1,27 @@
+{% extends 'thesite/index.html' %}
+{% block content %}
+<div class="spacer"></div>
+
+
+<h3 class="centered"> Submit verification for {{ conglomerate }}</h3>
+<div>
+  <form method="post" action="">
+      {% csrf_token %}
+      {% for field in form %}
+      <div class="col-4 centered">
+        <label>{{ field.label }}</label>
+      </div>
+      <div class="col-8 mobile-centered">
+        <label>{{ field }}</label>
+      </div>
+      {% endfor %}
+      <div class="col-12 centered">
+          <button type="submit" class="save btn btn-default">Save</button>
+      </div>
+  </form>
+</div>
+
+
+
+
+{% endblock %}

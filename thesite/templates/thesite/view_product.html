@@ -28,9 +28,12 @@
         <label>{{ v.who }}</label>
       </div>
       {% endfor %}
-<div>
-
+      <div class="col-12 centered">
+          <a href="{% url 'submit_verification' pk=product.pk %}">Submit verification for {{ product.name }}</a>
+      </div>
 </div>
+
+
 
 
 

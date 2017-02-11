@@ -19,15 +19,42 @@
 
 <div>
       <div class="col-4 centered">
-        <label>{{ conglomerate.name }}</label>
+        <label>What do they do?</label>
       </div>
       <div class="col-8 centered">
         <label>{{ conglomerate.text }}</label>
+      </div>
+      <div class="col-4 centered">
+        <label>Sustainability</label>
+      </div>
+      <div class="col-8 centered">
+        <label>{{ conglomerate.sustainability }}</label>
+      </div>
+      <div class="col-4 centered">
+        <label>How do they rank as an organization?</label>
+      </div>
+      <div class="col-8 centered">
+        <label>{{ conglomerate.employees }}</label>
       </div>
       <div class="col-12 centered">
           <a href="{% url 'modify_conglomerate' pk=conglomerate.pk %}">{{ conglomerate.name }} - Submit edit</a>
       </div>
 </div>
+
+<div class="top-spacer">
+    <h3 class="centered">Verified by</h3>
+      {% for v in verifications %}
+      <div class="col-4 centered">
+        <label>{{ v.individual }} on {{ v.date }}</label>
+      </div>
+      <div class="col-8 mobile-centered">
+        <label>{{ v.who }}</label>
+      </div>
+      {% endfor %}
+      <div class="col-12 centered">
+          <a href="{% url 'submit_verification_conglom' pk=conglomerate.pk %}">Submit verification for {{ conglomerate.name }}</a>
+      </div>
+<div>
 
 
 
