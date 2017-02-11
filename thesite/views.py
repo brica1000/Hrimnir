@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 from django.forms import inlineformset_factory
 
 from .models import Conglomerate, Product, Cert
-from thesite.forms import ProductForm
+from thesite.forms import ProductForm, ConglomerateForm
 
 
 def index(request):
@@ -42,6 +42,7 @@ def database(request):
     products = Product.objects.all()
     return render(request, 'thesite/database.html', {'conglom':conglom, 'products': products,},)
 
+"""
 @login_required
 def modify_conglomerate(request, pk):
     conglomerate = Conglomerate.objects.get(pk=pk)
@@ -55,6 +56,18 @@ def modify_conglomerate(request, pk):
     else:
         formset = ConglomerateInlineFormSet(instance=conglomerate)
     return render(request, 'thesite/modify_conglomerate.html', {'formset': formset})
+"""
+@login_required
+def modify_conglomerate(request, pk):
+    conglomerate = get_object_or_404(Conglomerate, pk=pk)
+    if request.method == "POST":
+        form = ConglomerateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('database'))
+    else:
+        form = ConglomerateForm(instance=conglomerate)
+    return render(request, 'thesite/modify_conglomerate.html', {'form': form,})
 
 @login_required
 def modify_product(request, pk):

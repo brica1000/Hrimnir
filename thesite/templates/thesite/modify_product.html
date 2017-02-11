@@ -9,13 +9,13 @@
       {% csrf_token %}
       {% for field in form %}
       <div class="col-4 centered">
-        <p>{{ field.label }}</p>
+        <label>{{ field.label }}</label>
       </div>
       <div class="col-8 mobile-centered">
-        <p>{{ field }}</p>
+        <label>{{ field }}</label>
       </div>
       {% endfor %}
-      <div class="col-3 centered">
+      <div class="col-12 centered">
           <button type="submit" class="save btn btn-default">Save</button>
       </div>
   </form>
@@ -28,5 +28,6 @@
     </table>
 </form>
 -->
+
 
 {% endblock %}
