@@ -60,6 +60,7 @@ def modify_conglomerate(request, pk):
 @login_required
 def modify_conglomerate(request, pk):
     conglomerate = get_object_or_404(Conglomerate, pk=pk)
+    products = conglomerate.product_set.all()
     if request.method == "POST":
         form = ConglomerateForm(request.POST)
         if form.is_valid():
@@ -67,7 +68,7 @@ def modify_conglomerate(request, pk):
             return HttpResponseRedirect(reverse('database'))
     else:
         form = ConglomerateForm(instance=conglomerate)
-    return render(request, 'thesite/modify_conglomerate.html', {'form': form,})
+    return render(request, 'thesite/modify_conglomerate.html', {'conglomerate': conglomerate,'form': form, 'products':products,})
 
 @login_required
 def modify_product(request, pk):

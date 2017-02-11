@@ -2,6 +2,20 @@
 {% block content %}
 <div class="spacer"></div>
 
+<h3 class="centered">{{ conglomerate }} - submit edit</h3>
+
+<div>
+    <div class="col-1"></div>
+    <div class="col-10">
+        <ul class="head-list">
+          {% for p in products %}
+          <a href="{% url 'modify_product' pk=p.pk %}"><li> {{ p }} </li></a>
+          {% endfor %}
+        </ul>
+    </div>
+    <div class="col-1"></div>
+</div>
+
 
 <div>
   <form method="post" action="">

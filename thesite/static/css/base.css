@@ -7,8 +7,34 @@ ul {
     padding: 0;
 }
 
+a:link {
+    color: #1b3ce2;
+    text-decoration: none;
+}
+a:visited {
+    color: #1b3ce2;
+    text-decoration: none;
+}
+a:hover {
+    color: hotpink;
+    text-decoration: none;
+}
+a:active {
+    color: #1b3ce2;
+    text-decoration: none;
+}
+
 textarea {
   width: 90%;
+}
+
+.head-list {
+  border-bottom: solid grey;
+}
+
+.head-list li {
+  display: inline;
+  margin: 0 40px 0 0;
 }
 
 #search-form {
@@ -16,10 +42,6 @@ textarea {
     border: 2px solid grey;
     border-radius: 4px;
     background-color: #f8f8f8;
-}
-
-.user-info {
-
 }
 
 #login-form {
