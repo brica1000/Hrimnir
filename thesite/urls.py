@@ -8,5 +8,6 @@ urlpatterns = [
     url(r'^submit/', views.submit, name='submit'),
     url(r'^database/', views.database, name='database'),
     url(r'^modify_product/(?P<pk>\d+)/$', views.modify_product, name='modify_product'),
+    url(r'^modify_conglomerate/(?P<pk>\d+)/$', views.modify_conglomerate, name='modify_conglomerate'),
 
 ]

@@ -7,7 +7,7 @@
     {% if c.approved_edit %}
     <div class="row">
                 <div class="col-3 centered">
-                  {{ c.name }}
+                  <a href="{% url 'modify_conglomerate' pk=c.pk %}">{{ c.name }}</a>
                 </div>
                 <div class="col-9">
                   {{ c.text }}

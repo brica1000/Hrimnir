@@ -42,8 +42,6 @@ def database(request):
     products = Product.objects.all()
     return render(request, 'thesite/database.html', {'conglom':conglom, 'products': products,},)
 
-# This we can use!
-"""
 @login_required
 def modify_conglomerate(request, pk):
     conglomerate = Conglomerate.objects.get(pk=pk)
@@ -56,9 +54,7 @@ def modify_conglomerate(request, pk):
             return HttpResponseRedirect(reverse('thesite/database.html'))
     else:
         formset = ConglomerateInlineFormSet(instance=conglomerate)
-    return render(request, 'thesite/modify_product.html', {'formset': formset})
-"""
-
+    return render(request, 'thesite/modify_conglomerate.html', {'formset': formset})
 
 @login_required
 def modify_product(request, pk):
