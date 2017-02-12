@@ -13,7 +13,7 @@
         <div class="col-7">
           <ul>
               {% for c in conglomerates %}
-              <li><input type="checkbox" name="checkbox" value="Car">{{ c.name }}</li>
+              <li><input type="checkbox" name="checkbox" value="{{ c.name }}">{{ c.name }} Last updated {{ c.last_updated }}</li>
               {% endfor %}
         </div>
   </div>
