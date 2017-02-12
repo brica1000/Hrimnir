@@ -41,6 +41,10 @@ textarea {
   margin-top: 26%;
 }
 
+.make-space {
+  height: 200px;
+}
+
 #search-form {
     box-sizing: border-box;
     border: 2px solid grey;

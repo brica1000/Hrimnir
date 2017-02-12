@@ -8,33 +8,55 @@
 {% csrf_token %}
   <div>
       <h3 class="centered">Conglomerates</h3>
-        <div class="col-5">
+        <div class="col-4">
         </div>
-        <div class="col-7">
+        <div class="col-8">
           <ul>
               {% for c in conglomerates %}
-              <li><input type="checkbox" name="checkbox" value="{{ c.name }}">{{ c.name }} Last updated {{ c.last_updated }}</li>
+              <li><input type="checkbox" name="checkbox" value="{{ c.pk }}"
+                {% if c.name in info %}checked{% endif %}>{{ c.name }} Last updated {{ c.last_updated }}</li>
               {% endfor %}
         </div>
   </div>
   <div>
-      <h3 class="centered">Products</h3>
-        <div class="col-6">
+      <h3 class="centered" id="submit">Products</h3>
+        <div class="col-4">
         </div>
-        <div class="col-6">
-          {% for p in products %}
-          {{ p.name }}
-          {% endfor %}
+        <div class="col-8">
+          <ul>
+              {% for p in products %}
+              <li><input type="checkbox" name="checkbox" value="{{ p.pk }}"
+                {% if p.name in info %}checked{% endif %}>{{ p.name }} Last updated {{ p.last_updated }}</li>
+              {% endfor %}
+          </ul>
         </div>
   </div>
   <div class="centered">
-    <input type="submit" name="submit">
+    <button type="submit" name="submit">Submit</button>
   </div>
 </form>
 
-<div class="centered">
-  {{ message }}
+<div class="make-space">
 </div>
+
+<div class="col-4" id="section1">
+  <ul>
+    {{ message }}
+    <li>{{ message.name }}</li>
+    <li>{{ message.text }}</li>
+    <li>{{ message.num_stars }}</li>
+    {% autoescape off %}<li>{{ message.last_updated }}</li>{% endautoescape %}
+    <li>{{ message.approved_edit }}</li>
+  </ul>
+</div>
+<div class="col-4">
+
+</div>
+<div class="col-4">
+
+</div>
+
+
 
 
 

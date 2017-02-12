@@ -107,12 +107,18 @@ def submit_verification_conglom(request, pk):
 def compare_edits(request):
     products = Product.objects.all()
     conglomerates = Conglomerate.objects.all()
-    if "checkbox" in request.POST:
-        message=str(request.POST.get("checkbox"))
+    if request.method == "POST":
+        info=request.POST.getlist("checkbox")  # This is a list of the strings from the corr. checkbox values
+        if len(info) == 2:
+            try:
+                message = Product.objects.get(pk=info[0])
+            except:
+                message = Conglomerate.objects.get(pk=info[0])
+        else:
+            message = "Choose two boxes please"
     else:
         message="Nothing choosen"
     return render(request, 'thesite/compare_edits.html', {'products':products, 'conglomerates': conglomerates, 'message':message,})
-
 
 def logout_view(request):
     logout(request)
