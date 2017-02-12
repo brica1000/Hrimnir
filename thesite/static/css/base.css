@@ -28,6 +28,10 @@ textarea {
   width: 90%;
 }
 
+.approval li {
+  color: #15d321;
+}
+
 .head-list {
   border-bottom: solid grey;
 }
