@@ -32,6 +32,18 @@ textarea {
   color: #15d321;
 }
 
+.approved {
+  margin: 10px 10px 10px 10px;
+  border: solid #15d321;
+  border-width: thin;
+}
+
+.not-approved {
+  margin: 10px 10px 10px 10px;
+  border: solid #ce2342;
+  border-width: thin;
+}
+
 .head-list {
   border-bottom: solid grey;
 }

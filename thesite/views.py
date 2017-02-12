@@ -10,6 +10,8 @@ from django.forms import inlineformset_factory
 from .models import Conglomerate, Product, Cert
 from thesite.forms import ProductForm, ConglomerateForm, VerificationForm, VerificationConglomForm
 
+from modules.mymodule import helpers
+
 
 def index(request):
     return render(request, 'thesite/index.html', {})
@@ -105,27 +107,25 @@ def submit_verification_conglom(request, pk):
 
 @login_required
 def compare_edits(request):
-    products = Product.objects.all()
-    conglomerates = Conglomerate.objects.all()
+    data = { 'products': Product.objects.all(), 'conglomerates': Conglomerate.objects.all(),'info' : [],
+             'message_0': "Nothing choosen", 'message_1': "", 'style': "", 'l_left': "", 'l_right': "",
+             'zipped': "", 'zipped_repeat': ""}
     if request.method == "POST":
         info=request.POST.getlist("checkbox")  # This is a list of the strings from the corr. checkbox values
         info = [ int(x) for x in info ] # We need int format to keep checkboxes checked, it won't affect what's below
         if len(info) == 2:  # Make sure only two are selected!
-            try:
-                message_0 = Product.objects.get(pk=info[0])
-                message_1 = Product.objects.get(pk=info[1])
-            except:  # If we can't find the entry in our products, then check the conglomerates.  We should make this more effecient one day..
-                message_0 = Conglomerate.objects.get(pk=info[0])
-                message_1 = Conglomerate.objects.get(pk=info[1])
+            (message_0, message_1) = helpers.new_old_color(info)
+            (style, l_left, l_right) = helpers.compare_fields(message_0, message_1)
+            data['info'] = info
+            data['message_0'] = message_0
+            data['message_1'] = message_1
+            data['zipped'] = zip(style, l_left, l_right)
+            data['zipped_repeat'] = zip(style, l_left, l_right)
         else:
-            message_0 = "Choose two boxes please"
-            message_1 =""
+            data['message_0'] = "Choose two boxes please"
     else:
-        info = []
-        message_0 = "Nothing choosen"
-        message_1 = ""
-    return render(request, 'thesite/compare_edits.html', {'products':products, 'conglomerates': conglomerates, 'info':info,
-                                                            'message_0':message_0, 'message_1': message_1,})
+        data = data
+    return render(request, 'thesite/compare_edits.html', data)
 
 def logout_view(request):
     logout(request)

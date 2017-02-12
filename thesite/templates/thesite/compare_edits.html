@@ -47,7 +47,12 @@
 <h4 class="centered">{{ message_0 }}</h4>
 {% endif %}
 
-<div class="col-4" id="section1">
+<div class="col-4
+{% if message_0.approved_edit %}
+approved
+{% else %}
+not-approved
+{% endif %}" id="left">
   <ul>
     <li>{{ message_0.name }}</li>
     <li>{{ message_0.text }}</li>
@@ -56,7 +61,12 @@
     <li>{{ message_0.approved_edit }}</li>
   </ul>
 </div>
-<div class="col-4">
+<div class="col-4
+{% if message_1.approved_edit %}
+approved
+{% else %}
+not-approved
+{% endif %}" id="left">
   <ul>
     <li>{{ message_1.name }}</li>
     <li>{{ message_1.text }}</li>
@@ -66,9 +76,34 @@
   </ul>
 </div>
 <div class="col-4">
-
 </div>
 
+<div class="make-space">
+</div>
+
+
+<!-- New try--->
+{% if message_1 == "" %}
+<h4 class="centered">{{ message_0 }}</h4>
+{% endif %}
+
+<div class="col-4">
+  <ul>
+    {% for s, ll, lr in zipped %}
+    <li style="color: {{ s }}">{{ ll }}</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="col-4">
+  <ul>
+    {% for s, ll, lr in zipped_repeat %}
+    <li style="color: {{ s }}">{{ lr }}</li>
+    {% endfor %}
+  </ul>
+</div>
+<div class="col-4">
+</div>
 
 
 
