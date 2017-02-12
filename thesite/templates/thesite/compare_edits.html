@@ -1,0 +1,47 @@
+{% extends 'thesite/index.html' %}
+{% block content %}
+<div class="spacer"></div>
+
+<h3 class="centered">Choose 2 to compare and save changes</h3>
+
+<form action="" method="POST">
+{% csrf_token %}
+  <div>
+      <h3 class="centered">Conglomerates</h3>
+        <div class="col-5">
+        </div>
+        <div class="col-7">
+          <ul>
+              {% for c in conglomerates %}
+              <li><input type="checkbox" name="checkbox" value="Car">{{ c.name }}</li>
+              {% endfor %}
+        </div>
+  </div>
+  <div>
+      <h3 class="centered">Products</h3>
+        <div class="col-6">
+        </div>
+        <div class="col-6">
+          {% for p in products %}
+          {{ p.name }}
+          {% endfor %}
+        </div>
+  </div>
+  <div class="centered">
+    <input type="submit" name="submit">
+  </div>
+</form>
+
+<div class="centered">
+  {{ message }}
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock %}

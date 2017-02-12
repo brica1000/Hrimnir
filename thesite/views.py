@@ -103,6 +103,17 @@ def submit_verification_conglom(request, pk):
         form = VerificationConglomForm(initial={'conglomerate': conglomerate})
     return render(request, 'thesite/submit_verification_conglom.html', {'form': form, 'conglomerate':conglomerate})
 
+@login_required
+def compare_edits(request):
+    products = Product.objects.all()
+    conglomerates = Conglomerate.objects.all()
+    if "checkbox" in request.POST:
+        message=str(request.POST.get("checkbox"))
+    else:
+        message="Nothing choosen"
+    return render(request, 'thesite/compare_edits.html', {'products':products, 'conglomerates': conglomerates, 'message':message,})
+
+
 def logout_view(request):
     logout(request)
     # Redirect to a success page.

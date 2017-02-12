@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^modify_conglomerate/(?P<pk>\d+)/$', views.modify_conglomerate, name='modify_conglomerate'),
     url(r'^submit_verification/(?P<pk>\d+)/$', views.submit_verification, name='submit_verification'),
     url(r'^submit_verification_conglom/(?P<pk>\d+)/$', views.submit_verification_conglom, name='submit_verification_conglom'),
+    url(r'^compare_edits/', views.compare_edits, name='compare_edits'),
 
 ]
