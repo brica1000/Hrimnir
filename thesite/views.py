@@ -109,16 +109,21 @@ def compare_edits(request):
     conglomerates = Conglomerate.objects.all()
     if request.method == "POST":
         info=request.POST.getlist("checkbox")  # This is a list of the strings from the corr. checkbox values
-        if len(info) == 2:
+        if len(info) == 2:  # Make sure only two are selected!
             try:
-                message = Product.objects.get(pk=info[0])
-            except:
-                message = Conglomerate.objects.get(pk=info[0])
+                message_0 = Product.objects.get(pk=info[0])
+                message_1 = Product.objects.get(pk=info[1])
+            except:  # If we can't find the entry in our products, then check the conglomerates.  We should make this more effecient one day..
+                message_0 = Conglomerate.objects.get(pk=info[0])
+                message_1 = Conglomerate.objects.get(pk=info[1])
         else:
-            message = "Choose two boxes please"
+            message_0 = "Choose two boxes please"
+            message_1 =""
     else:
-        message="Nothing choosen"
-    return render(request, 'thesite/compare_edits.html', {'products':products, 'conglomerates': conglomerates, 'message':message,})
+        message_0 = "Nothing choosen"
+        message_1 = ""
+    return render(request, 'thesite/compare_edits.html', {'products':products, 'conglomerates': conglomerates,
+                                                            'message_0':message_0, 'message_1': message_1,})
 
 def logout_view(request):
     logout(request)

@@ -39,18 +39,27 @@
 <div class="make-space">
 </div>
 
+{% if message_1 == "" %}
+<h4 class="centered">{{ message_0 }}</h4>
+{% endif %}
+
 <div class="col-4" id="section1">
   <ul>
-    {{ message }}
-    <li>{{ message.name }}</li>
-    <li>{{ message.text }}</li>
-    <li>{{ message.num_stars }}</li>
-    {% autoescape off %}<li>{{ message.last_updated }}</li>{% endautoescape %}
-    <li>{{ message.approved_edit }}</li>
+    <li>{{ message_0.name }}</li>
+    <li>{{ message_0.text }}</li>
+    <li>{{ message_0.num_stars }}</li>
+    <li>{{ message_0.last_updated }}</li>
+    <li>{{ message_0.approved_edit }}</li>
   </ul>
 </div>
 <div class="col-4">
-
+  <ul>
+    <li>{{ message_1.name }}</li>
+    <li>{{ message_1.text }}</li>
+    <li>{{ message_1.num_stars }}</li>
+    <li>{{ message_1.last_updated }}</li>
+    <li>{{ message_1.approved_edit }}</li>
+  </ul>
 </div>
 <div class="col-4">
 
