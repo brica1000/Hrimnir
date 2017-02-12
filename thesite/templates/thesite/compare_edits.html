@@ -14,7 +14,7 @@
           <ul>
               {% for c in conglomerates %}
               <li><input type="checkbox" name="checkbox" value="{{ c.pk }}"
-                {% if c.name in info %}checked{% endif %}>{{ c.name }} Last updated {{ c.last_updated }}</li>
+                {% if c.pk in info %}checked{% endif %}>{{ c.name }} Last updated {{ c.last_updated }} - {{c.pk}}</li>
               {% endfor %}
         </div>
   </div>
@@ -26,7 +26,7 @@
           <ul>
               {% for p in products %}
               <li><input type="checkbox" name="checkbox" value="{{ p.pk }}"
-                {% if p.name in info %}checked{% endif %}>{{ p.name }} Last updated {{ p.last_updated }}</li>
+                {% if p.pk in info %}checked{% endif %}>{{ p.name }} Last updated {{ p.last_updated }} - {{p.pk}}</li>
               {% endfor %}
           </ul>
         </div>

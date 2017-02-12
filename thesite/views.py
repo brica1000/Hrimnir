@@ -109,6 +109,7 @@ def compare_edits(request):
     conglomerates = Conglomerate.objects.all()
     if request.method == "POST":
         info=request.POST.getlist("checkbox")  # This is a list of the strings from the corr. checkbox values
+        info = [ int(x) for x in info ] # We need int format to keep checkboxes checked, it won't affect what's below
         if len(info) == 2:  # Make sure only two are selected!
             try:
                 message_0 = Product.objects.get(pk=info[0])
@@ -120,9 +121,10 @@ def compare_edits(request):
             message_0 = "Choose two boxes please"
             message_1 =""
     else:
+        info = []
         message_0 = "Nothing choosen"
         message_1 = ""
-    return render(request, 'thesite/compare_edits.html', {'products':products, 'conglomerates': conglomerates,
+    return render(request, 'thesite/compare_edits.html', {'products':products, 'conglomerates': conglomerates, 'info':info,
                                                             'message_0':message_0, 'message_1': message_1,})
 
 def logout_view(request):

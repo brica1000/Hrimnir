@@ -120,10 +120,10 @@ This should lay out in a stack on a phone
     .col-11 {width: 91.66%;}
     .col-12 {width: 100%;}
 
-    .nav-bar.desktop {
-      background-color: ;
-      position: fixed;
+    .mobile {
+      display: none;
     }
+
     .nav-bar li {
       display: inline-block;
     }
