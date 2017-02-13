@@ -1,8 +1,7 @@
 from thesite.models import Conglomerate, Product, Cert
 
 
-
-
+"""Outsourcing compare_edits view"""
 def new_old_color(info):
     try:
         message_0 = Product.objects.get(pk=info[0])
@@ -11,7 +10,6 @@ def new_old_color(info):
         message_0 = Conglomerate.objects.get(pk=info[0])
         message_1 = Conglomerate.objects.get(pk=info[1])
     return message_0, message_1
-
 
 def compare_fields(message_0, message_1):
     l = [ [x.name, x.text, x.approved_edit] for x in [message_0, message_1]]  # create two lists
@@ -23,3 +21,16 @@ def compare_fields(message_0, message_1):
         else:
             style.append('no_style')
     return style, l[0], l[1]
+
+def compare_with_colors_and_make_data_dic(info, data):  # info is from the two checkboxes, data is our dictionary to push to the template
+    (message_0, message_1) = new_old_color(info)
+    (style, l_left, l_right) = compare_fields(message_0, message_1)
+    data = { 'products': Product.objects.all(), 'conglomerates': Conglomerate.objects.all(),'info' : [],
+             'message_0': "Nothing choosen", 'message_1': "", 'style': "", 'l_left': "", 'l_right': "",
+             'zipped': "", 'zipped_repeat': ""}
+    data['info'] = info
+    data['message_0'] = message_0
+    data['message_1'] = message_1
+    data['zipped'] = zip(style, l_left, l_right)
+    data['zipped_repeat'] = zip(style, l_left, l_right)
+    return data

@@ -106,43 +106,44 @@ def submit_verification_conglom(request, pk):
     return render(request, 'thesite/submit_verification_conglom.html', {'form': form, 'conglomerate':conglomerate})
 
 @login_required
+# todo - prevent people trying to compare a product and a conglom
 def compare_edits(request):
     data = { 'products': Product.objects.all(), 'conglomerates': Conglomerate.objects.all(),'info' : [],
              'message_0': "Nothing choosen", 'message_1': "", 'style': "", 'l_left': "", 'l_right': "",
              'zipped': "", 'zipped_repeat': ""}
-    if request.POST.get('action_1', False) == "checkboxes":  # old: request.method == "POST"
+    if request.method == 'POST':
+        # Form 1 - for getting info from checkbox
         info=request.POST.getlist("checkbox")  # This is a list of the strings from the corr. checkbox values
         info = [ int(x) for x in info ] # We need int format to keep checkboxes checked, it won't affect what's below
         if len(info) == 2:  # Make sure only two are selected!
-            (message_0, message_1) = helpers.new_old_color(info)
-            (style, l_left, l_right) = helpers.compare_fields(message_0, message_1)
-            data['info'] = info
-            data['message_0'] = message_0
-            data['message_1'] = message_1
-            data['zipped'] = zip(style, l_left, l_right)
-            data['zipped_repeat'] = zip(style, l_left, l_right)
-            if isinstance(message_1, Product):  # Use modifty product form, note we only check one of the checked items hoping that they are of the same class
-                product = get_object_or_404(Product, pk=message_1.pk)
-                print(request.POST.get('action_2', 'action_1') == "form-submit")
-                if request.POST.get('action_2', 'action_1') == "form-submit":
-                    form = ProductForm(request.POST)
-                    if form.is_valid():
-                        form.save()
-                        data['form'] = form
-                        print('flaag')
-                        return HttpResponseRedirect(reverse('database'))
-                    else:
-                        print('flag')
-                else:
-                    form = ProductForm(instance=product)
-                    data['form'] = form
-                return render(request, 'thesite/compare_edits.html', data)
-
+            data = helpers.compare_with_colors_and_make_data_dic(info, data)
         else:
+            data = { 'products': Product.objects.all(), 'conglomerates': Conglomerate.objects.all(),'info' : [],
+                     'message_0': "Nothing choosen", 'message_1': "", 'style': "", 'l_left': "", 'l_right': "",
+                     'zipped': "", 'zipped_repeat': ""}
             data['message_0'] = "Choose two boxes please"
-    else:
-        data = data
+        # Form 2 - for updating the information of a product/conglomerate
+        if data['info'] != []:  # We don't need the form is we haven't choosen which two entries to compare
+            if isinstance(data['message_1'], Product):  # Use ProductForm is we are comparing products
+                product = get_object_or_404(Product, pk=data['message_1'].pk)
+                form = ProductForm(instance=product)  # Propopulate when we make our selections of check boxes
+                if request.POST.get('action_2') == 'form-submit':  #  Then when we hit the lower button, we resubmit the whole form, including our checkbox form.
+                    form = ProductForm(request.POST)
+                data['form'] = form
+                if form.is_valid():
+                    form.save()
+                    return HttpResponseRedirect(reverse('compare_edits'))
+            else:  # if we aren't editing a product, we are working on a conglomerate and need a ConglomerateForm
+                conglomerate = get_object_or_404(Conglomerate, pk=data['message_1'].pk)
+                form = ConglomerateForm(instance=conglomerate)
+                if request.POST.get('action_2') == 'form-submit':
+                    form = ConglomerateForm(request.POST)
+                data['form'] = form
+                if form.is_valid():
+                    form.save()
+                    return HttpResponseRedirect(reverse('compare_edits'))
     return render(request, 'thesite/compare_edits.html', data)
+
 
 def logout_view(request):
     logout(request)

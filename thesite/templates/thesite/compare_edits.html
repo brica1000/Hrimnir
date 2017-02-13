@@ -38,7 +38,7 @@
   <div class="centered">
     <button type="submit" name="action_1" value="checkboxes">Submit</button>
   </div>
-</form>
+
 
 <div class="make-space">
 </div>
@@ -104,13 +104,13 @@ not-approved
       </ul>
     </div>
     <div class="col-4">
-      <form method="post" action="">
+
           {% csrf_token %}
           <ul>
               {{ form.as_p }}
           </ul>
           <div class="centered">
-              <input type="submit" name="action_2" value="form-submit" class="save btn btn-default">Save</input>
+              <button type="submit" name="action_2" value="form-submit">Save</button>
           </div>
       </form>
     </div>
