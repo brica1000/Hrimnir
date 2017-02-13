@@ -36,7 +36,7 @@
         </div>
   </div>
   <div class="centered">
-    <button type="submit" name="submit">Submit</button>
+    <button type="submit" name="action_1" value="checkboxes">Submit</button>
   </div>
 </form>
 
@@ -83,26 +83,37 @@ not-approved
 
 
 <!-- New try--->
-{% if message_1 == "" %}
-<h4 class="centered">{{ message_0 }}</h4>
-{% endif %}
+<div>
+    {% if message_1 == "" %}
+    <h4 class="centered">{{ message_0 }}</h4>
+    {% endif %}
 
-<div class="col-4">
-  <ul>
-    {% for s, ll, lr in zipped %}
-    <li style="color: {{ s }}">{{ ll }}</li>
-    {% endfor %}
-  </ul>
-</div>
+    <div class="col-4">
+      <ul>
+        {% for s, ll, lr in zipped %}
+        <li>{{ ll }}</li>
+        {% endfor %}
+      </ul>
+    </div>
 
-<div class="col-4">
-  <ul>
-    {% for s, ll, lr in zipped_repeat %}
-    <li style="color: {{ s }}">{{ lr }}</li>
-    {% endfor %}
-  </ul>
-</div>
-<div class="col-4">
+    <div class="col-4">
+      <ul>
+        {% for s, ll, lr in zipped_repeat %}
+        <li style="color: {{ s }}">{{ lr }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-4">
+      <form method="post" action="">
+          {% csrf_token %}
+          <ul>
+              {{ form.as_p }}
+          </ul>
+          <div class="centered">
+              <input type="submit" name="action_2" value="form-submit" class="save btn btn-default">Save</input>
+          </div>
+      </form>
+    </div>
 </div>
 
 
