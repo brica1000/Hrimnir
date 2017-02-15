@@ -1,6 +1,7 @@
 html {
     font-family: "Lucida Sans", sans-serif;
 }
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -28,6 +29,10 @@ textarea {
   width: 90%;
 }
 
+.bordered {
+  border: solid pink;
+}
+
 .approval li {
   color: #15d321;
 }
@@ -53,12 +58,13 @@ textarea {
   margin: 0 40px 0 0;
 }
 
+/**  What is this??**/
 .top-spacer {
   margin-top: 26%;
 }
 
 .make-space {
-  height: 200px;
+  height: 100px;
 }
 
 #search-form {
@@ -140,8 +146,44 @@ This should lay out in a stack on a phone
       display: none;
     }
 
+    .nav-bar.desktop {
+      position: fixed;
+      top: -90px;
+    }
+
+    #nav-image {
+      height: 150px;
+      z-index: -1;
+      position: relative;
+      top: 70px;
+    }
+
+    #home-button {
+      color: white;
+      letter-spacing: 2px;
+      text-shadow:
+      -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #000;
+    }
+
+    #home-button:hover {
+        color: hotpink;
+        text-decoration: none;
+    }
+
+    #user-image {
+      height: 150px;
+      z-index: -1;
+      position: relative;
+      top: -90px;
+      right: -30px;
+    }
+
     .nav-bar li {
       display: inline-block;
+      top: 300px;
     }
     .top {
       display: none;
@@ -150,7 +192,7 @@ This should lay out in a stack on a phone
       display: none;
     }
     .spacer {
-      height: 100px;
+      height: 50px;
     }
 }
 [class*="col-"] {
@@ -196,8 +238,9 @@ table.centered {
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
       display: none;
-      position: absolute;
+      position: relative;
       right: 0;
+      top: -90px;
       background-color: #f9f9f9;
       min-width: 160px;
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);

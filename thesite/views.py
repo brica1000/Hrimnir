@@ -28,21 +28,6 @@ def database(request):
     products = Product.objects.all()
     return render(request, 'thesite/database.html', {'conglom':conglom, 'products': products,},)
 
-"""
-@login_required
-def modify_conglomerate(request, pk):
-    conglomerate = Conglomerate.objects.get(pk=pk)
-    ConglomerateInlineFormSet = inlineformset_factory(Conglomerate, Product,   fields=('name','category','text',))  # From where are the fields?
-    if request.method == "POST":
-        formset = ConglomerateInlineFormSet(request.POST, request.FILES, instance=conglomerate)
-        if formset.is_valid():
-            formset.save()
-            # Do something. Should generally end with a redirect. For example:
-            return HttpResponseRedirect(reverse('thesite/database.html'))
-    else:
-        formset = ConglomerateInlineFormSet(instance=conglomerate)
-    return render(request, 'thesite/modify_conglomerate.html', {'formset': formset})
-"""
 def view_conglomerate(request, pk):
     conglomerate = get_object_or_404(Conglomerate, pk=pk)
     products = conglomerate.product_set.all()

@@ -11,11 +11,12 @@
 
   <body>
         <div class="col-12 nav-bar desktop centered">
+            <img src="/static/images/kettle.png" id="nav-image">
             <ul>
-                    <li><a href="{% url 'the_story' %}">Hrimnir</a></li>
+                    <li><a href="{% url 'the_story' %}" id="home-button">Hrimnir</a></li>
                     <li><form><input id="search-form" type="text" name="search" placeholder="Search.."></form></li>
                     <div class="dropdown desktop">
-                        <button>User</button>
+                        <img src="/static/images/onion_free.png" id="user-image">
                           <div class="dropdown-content">
                               {% if user.is_authenticated %}
                               <a href="{% url 'compare_edits' %}">Compare edits</a>
@@ -54,7 +55,8 @@
                 </div>
         </div>
 
-
+        <div class="make-space">
+        </div>
 
               {% block content %}
               {% endblock %}

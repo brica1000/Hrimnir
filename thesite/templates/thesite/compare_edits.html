@@ -78,17 +78,18 @@ not-approved
 <div class="col-4">
 </div>
 
-<div class="make-space">
+<div class="col-12 make-space">
 </div>
 
 
 <!-- New try--->
 <div>
     {% if message_1 == "" %}
-    <h4 class="centered">{{ message_0 }}</h4>
+    <h4 class="col-12 centered">{{ message_0 }}</h4>
     {% endif %}
-
-    <div class="col-4">
+</div>
+<div>
+    <div class="col-4 bordered">
       <ul>
         {% for s, ll, lr in zipped %}
         <li>{{ ll }}</li>
@@ -96,14 +97,14 @@ not-approved
       </ul>
     </div>
 
-    <div class="col-4">
+    <div class="col-4 bordered">
       <ul>
         {% for s, ll, lr in zipped_repeat %}
         <li style="color: {{ s }}">{{ lr }}</li>
         {% endfor %}
       </ul>
     </div>
-    <div class="col-4">
+    <div class="col-4 bordered">
 
           {% csrf_token %}
           <ul>
