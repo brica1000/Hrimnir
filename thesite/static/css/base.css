@@ -8,6 +8,11 @@ ul {
     padding: 0;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 a:link {
     color: #1b3ce2;
     text-decoration: none;
@@ -29,8 +34,12 @@ textarea {
   width: 90%;
 }
 
+
+/** Custom CSS for classes **/
 .bordered {
   border: solid pink;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .approval li {
@@ -38,13 +47,13 @@ textarea {
 }
 
 .approved {
-  margin: 10px 10px 10px 10px;
+  padding: 10px 10px 10px 10px;
   border: solid #15d321;
   border-width: thin;
 }
 
 .not-approved {
-  margin: 10px 10px 10px 10px;
+  padding: 10px 10px 10px 10px;
   border: solid #ce2342;
   border-width: thin;
 }
@@ -63,10 +72,8 @@ textarea {
   margin-top: 26%;
 }
 
-.make-space {
-  height: 100px;
-}
 
+/** Custom CSS for ids **/
 #search-form {
     box-sizing: border-box;
     border: 2px solid grey;
@@ -85,6 +92,8 @@ textarea {
 * {
     box-sizing: border-box;
 }
+
+/** Custom CSS for mobile vs desktop **/
 
 /*
 For mobile phones:
