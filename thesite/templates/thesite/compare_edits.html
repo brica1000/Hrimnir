@@ -19,6 +19,7 @@
                 {% if c.pk in info %}checked{% endif %}>{{ c.name }} Last updated {{ c.last_updated }}
               </li>
               {% endfor %}
+          </ul>
         </div>
     </div>
     <div>
@@ -41,8 +42,73 @@
     <button type="submit" name="action_1" value="checkboxes">Submit</button>
   </div>
 
+<div class="spacer"></div>
 
 
+<div>
+    <div class="col-3"></div>
+    <div class="col-9">
+
+            <div class="w3-row">
+              <a href="javascript:void(0)" onclick="openCity(event, 'London');">
+                <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding centered">Conglomerates</div>
+              </a>
+              <a href="javascript:void(0)" onclick="openCity(event, 'Paris');">
+                <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding centered">Products</div>
+              </a>
+            </div>
+
+          <div class="scroll-box-medium">
+            <div id="London" class="w3-container city" style="display:none">
+                  <ul>
+                      {% for c in conglomerates %}
+                      <li {% if not c.approved_edit %} style="color: #ce2342;" {% endif %}>
+                        <input type="checkbox" name="checkbox" value="{{ c.pk }}"
+                        {% if c.pk in info %}checked{% endif %}>{{ c.name }} Last updated {{ c.last_updated }}
+                      </li>
+                      {% endfor %}
+                  </ul>
+            </div>
+
+            <div id="Paris" class="w3-container city" style="display:none">
+              <ul>
+                  {% for p in products %}
+                  <li {% if not p.approved_edit %} style="color: #ce2342;" {% endif %}>
+                    <input type="checkbox" name="checkbox" value="{{ p.pk }}"
+                    {% if p.pk in info %}checked{% endif %}>{{ p.name }} Last updated {{ p.last_updated }}
+                    {% if p.approved_edit %}  {% else %} {% endif %}</li>
+                  {% endfor %}
+              </ul>
+            </div>
+          </div>
+
+    </div>
+</div>
+<div class="centered">
+  <button type="submit" name="action_1" value="checkboxes">Submit</button>
+</div>
+
+
+
+  <script>
+  function openCity(evt, cityName) {
+    var i, x, tablinks;
+    x = document.getElementsByClassName("city");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < x.length; i++) {
+       tablinks[i].className = tablinks[i].className.replace(" w3-border-red", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.firstElementChild.className += " w3-border-red";
+  }
+  </script>
+
+
+
+<!-- Lower half of page -->
 
 <div>
     {% if message_1 == "" %}
