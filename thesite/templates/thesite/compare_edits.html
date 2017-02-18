@@ -6,6 +6,7 @@
 
 <form action="" method="POST">
 {% csrf_token %}
+<div class="scroll-box-medium">
   <div>
       <h3 class="centered">Conglomerates</h3>
         <div class="col-4">
@@ -19,21 +20,22 @@
               </li>
               {% endfor %}
         </div>
-  </div>
-  <div>
-      <h3 class="centered" id="submit">Products</h3>
-        <div class="col-4">
-        </div>
-        <div class="col-8 approval">
-          <ul>
-              {% for p in products %}
-              <li {% if not p.approved_edit %} style="color: #ce2342;" {% endif %}>
-                <input type="checkbox" name="checkbox" value="{{ p.pk }}"
-                {% if p.pk in info %}checked{% endif %}>{{ p.name }} Last updated {{ p.last_updated }}
-                {% if p.approved_edit %}  {% else %} {% endif %}</li>
-              {% endfor %}
-          </ul>
-        </div>
+    </div>
+    <div>
+        <h3 class="centered" id="submit">Products</h3>
+          <div class="col-4">
+          </div>
+          <div class="col-8 approval">
+            <ul>
+                {% for p in products %}
+                <li {% if not p.approved_edit %} style="color: #ce2342;" {% endif %}>
+                  <input type="checkbox" name="checkbox" value="{{ p.pk }}"
+                  {% if p.pk in info %}checked{% endif %}>{{ p.name }} Last updated {{ p.last_updated }}
+                  {% if p.approved_edit %}  {% else %} {% endif %}</li>
+                {% endfor %}
+            </ul>
+          </div>
+    </div>
   </div>
   <div class="centered">
     <button type="submit" name="action_1" value="checkboxes">Submit</button>

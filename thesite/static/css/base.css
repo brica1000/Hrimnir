@@ -38,8 +38,11 @@ textarea {
 /** Custom CSS for classes **/
 .bordered {
   border: solid pink;
-  display: inline-block;
-  vertical-align: top;
+}
+
+.scroll-box-medium {
+  overflow: auto;
+  height: 300px;
 }
 
 .approval li {
@@ -201,7 +204,7 @@ This should lay out in a stack on a phone
       display: none;
     }
     .spacer {
-      height: 50px;
+      height: 150px;
     }
 }
 [class*="col-"] {

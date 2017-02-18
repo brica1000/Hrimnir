@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 from django.forms import inlineformset_factory
 
 from .models import Conglomerate, Product, Cert
-from thesite.forms import ProductForm, ConglomerateForm, VerificationForm, VerificationConglomForm
+from thesite.forms import ProductForm, ConglomerateForm, VerificationForm, VerificationConglomForm, CompareProductForm, CompareConglomerateForm
 
 from modules.mymodule import helpers
 
@@ -111,18 +111,18 @@ def compare_edits(request):
         if data['info'] != []:  # We don't need the form is we haven't choosen which two entries to compare
             if isinstance(data['message_1'], Product):  # Use ProductForm is we are comparing products
                 product = get_object_or_404(Product, pk=data['message_1'].pk)
-                form = ProductForm(instance=product)  # Propopulate when we make our selections of check boxes
+                form = CompareProductForm(instance=product)  # Propopulate when we make our selections of check boxes
                 if request.POST.get('action_2') == 'form-submit':  #  Then when we hit the lower button, we resubmit the whole form, including our checkbox form.
-                    form = ProductForm(request.POST)
+                    form = CompareProductForm(request.POST)
                 data['form'] = form
                 if form.is_valid():
                     form.save()
                     return HttpResponseRedirect(reverse('compare_edits'))
             else:  # if we aren't editing a product, we are working on a conglomerate and need a ConglomerateForm
                 conglomerate = get_object_or_404(Conglomerate, pk=data['message_1'].pk)
-                form = ConglomerateForm(instance=conglomerate)
+                form = CompareConglomerateForm(instance=conglomerate)
                 if request.POST.get('action_2') == 'form-submit':
-                    form = ConglomerateForm(request.POST)
+                    form = CompareConglomerateForm(request.POST)
                 data['form'] = form
                 if form.is_valid():
                     form.save()

@@ -1,6 +1,5 @@
 from django.db import models
-import datetime
-
+from django.utils import timezone
 
 class Conglomerate(models.Model):  # But each Conglomerate can make many products
     name = models.CharField(max_length=100)
@@ -8,12 +7,17 @@ class Conglomerate(models.Model):  # But each Conglomerate can make many product
     text = models.CharField(max_length=1000)
     sustainability = models.CharField(max_length=1000, blank=True)
     employees = models.CharField(max_length=1000, blank=True)
-    last_updated = models.DateTimeField(default=datetime.datetime.now)
+    last_updated = models.DateTimeField(default=timezone.now)
     num_stars = models.IntegerField() # out of five
     approved_edit = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
+    """ Maybe this is useful one day?
+    def update(self):
+        self.last_updated = timezone.now()
+        self.save()
+    """
 
     pass
 
@@ -38,7 +42,7 @@ class Product(models.Model):  # Each product has one Conglomerate
     name = models.CharField(max_length=100)
     category = models.CharField(max_length=100)
     text = models.CharField(max_length=1000)
-    last_updated = models.DateTimeField(default=datetime.datetime.now)
+    last_updated = models.DateTimeField(default=timezone.now)
     num_stars = models.IntegerField() # out of five
     approved_edit = models.BooleanField(default=False)
 
@@ -56,7 +60,7 @@ class Verification(models.Model):
     conglomerate = models.ForeignKey(Conglomerate, on_delete=models.CASCADE, null=True)
 
     individual = models.CharField(max_length=100, default="", null=True)
-    date = models.DateTimeField(default=datetime.datetime.now)
+    date = models.DateTimeField(default=timezone.now)
     who = models.CharField(max_length=1000, default="", null=True)
     comment = models.CharField(max_length=1000, default="", null=True)
     comment_sustain = models.CharField(max_length=1000, default="", null=True)
