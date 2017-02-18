@@ -24,7 +24,7 @@ def compare_fields(message_0, message_1):
     return style, l[0], l[1], fields
 
 def compare_with_colors_and_make_data_dic(info, data):  # info is from the two checkboxes, data is our dictionary to push to the template
-    (message_0, message_1) = new_old_color(info)
+    (message_1, message_0) = new_old_color(info)  # Swtich the order to control which info shows up on which side in compare_edits
     (style, l_left, l_right, fields) = compare_fields(message_0, message_1)
     data = { 'products': Product.objects.all(), 'conglomerates': Conglomerate.objects.all(),'info' : [],
              'message_0': "Nothing choosen", 'message_1': "", 'style': "", 'l_left': "", 'l_right': "",

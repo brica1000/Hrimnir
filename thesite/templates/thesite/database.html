@@ -16,7 +16,6 @@
 
 
     {% for p in products %}
-    {% if p.approved_edit %}
     <div class="row">
                 <div class="col-3 centered">
                   <a href="{% url 'view_product' pk=p.pk %}">{{ p.name }}</a>
@@ -25,7 +24,6 @@
                   {{ p.text }}
                 </div>
     </div>
-    {% endif %}
     {% endfor %}
 
 
