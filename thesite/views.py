@@ -24,7 +24,12 @@ def submit(request):
     return render(request, 'thesite/submit.html', {})
 
 def database(request):
-    conglom = Conglomerate.objects.all()
+    unique_names = Conglomerate.objects.filter(approved_edit=True,).values_list('name').distinct() # Get a list of distinct conglomerates
+    conglom = []
+    print(unique_names)
+    for un in unique_names:  # We only want the latest one
+        conglom.append(Conglomerate.objects.filter(name=un[0]).order_by('-last_updated').first())
+    print(conglom)
     products = Product.objects.all()
     return render(request, 'thesite/database.html', {'conglom':conglom, 'products': products,},)
 

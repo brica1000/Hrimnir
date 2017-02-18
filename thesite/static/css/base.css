@@ -91,6 +91,17 @@ textarea {
   transform: translate(-50%, -50%);
 }
 
+/** This is for aligning our lists with our form when comparing **/
+#Text {
+  height: 152px;
+}
+#Sustainability{
+  height: 152px;
+}
+#Employees {
+  height: 152px;
+}
+
 
 * {
     box-sizing: border-box;

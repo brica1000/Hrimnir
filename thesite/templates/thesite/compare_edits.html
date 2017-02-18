@@ -58,8 +58,8 @@
         not-approved
         {% endif %}">
           <ul>
-            {% for s, ll, lr in zipped %}
-            <li>{{ ll }}</li>
+            {% for s, ll, lr, field in zipped %}
+            <div id="{{ field }}"><p>{{ field}}: {{ ll }}</p></div>
             {% endfor %}
           </ul>
         </div>
@@ -73,8 +73,8 @@
         not-approved
         {% endif %}">
           <ul>
-            {% for s, ll, lr in zipped_repeat %}
-            <li style="color: {{ s }}">{{ lr }}</li>
+            {% for s, ll, lr, field in zipped_repeat %}
+            <div id="{{ field }}" ><p style="color: {{ s }}">{{ field }}: {{ lr }}</p></div>
             {% endfor %}
           </ul>
       </div>

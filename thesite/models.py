@@ -18,6 +18,8 @@ class Conglomerate(models.Model):  # But each Conglomerate can make many product
         self.last_updated = timezone.now()
         self.save()
     """
+    class Meta:
+        ordering = ('name', '-last_updated')
 
     pass
 
@@ -42,6 +44,8 @@ class Product(models.Model):  # Each product has one Conglomerate
     name = models.CharField(max_length=100)
     category = models.CharField(max_length=100)
     text = models.CharField(max_length=1000)
+    sustainability = models.CharField(max_length=1000, blank=True)
+    employees = models.CharField(max_length=1000, blank=True)
     last_updated = models.DateTimeField(default=timezone.now)
     num_stars = models.IntegerField() # out of five
     approved_edit = models.BooleanField(default=False)
@@ -50,7 +54,7 @@ class Product(models.Model):  # Each product has one Conglomerate
         return self.name
 
     class Meta:
-        ordering = ('name',)
+        ordering = ('name', '-last_updated')
 
     pass
 
