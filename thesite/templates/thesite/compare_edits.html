@@ -6,6 +6,7 @@
 
 <form action="" method="POST">
 {% csrf_token %}
+<!--
 <div class="scroll-box-medium">
   <div>
       <h3 class="centered">Conglomerates</h3>
@@ -43,39 +44,41 @@
   </div>
 
 <div class="spacer"></div>
+-->
 
+<!-- todo test to make sure the right boxes stay checked!! -->
 
 <div>
-    <div class="col-3"></div>
-    <div class="col-9">
+    <div class="col-2"></div>
+    <div class="col-8">
 
-            <div class="w3-row">
-              <a href="javascript:void(0)" onclick="openCity(event, 'London');">
-                <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding centered">Conglomerates</div>
+            <div class="tab">
+              <a href="javascript:void(0)" class="tablinks" id="defaultOpen" onclick="openCity(event, 'Conglomerate');">
+                <div class="centered">Conglomerates</div>
               </a>
-              <a href="javascript:void(0)" onclick="openCity(event, 'Paris');">
-                <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding centered">Products</div>
+              <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Product');">
+                <div class="centered">Products</div>
               </a>
             </div>
 
           <div class="scroll-box-medium">
-            <div id="London" class="w3-container city" style="display:none">
+            <div id="Conglomerate" class="tabcontent approval" style="display:none">
                   <ul>
                       {% for c in conglomerates %}
-                      <li {% if not c.approved_edit %} style="color: #ce2342;" {% endif %}>
+                      <li {% if not c.approved_edit %} style="color: #ce2342" {% endif %}>
                         <input type="checkbox" name="checkbox" value="{{ c.pk }}"
-                        {% if c.pk in info %}checked{% endif %}>{{ c.name }} Last updated {{ c.last_updated }}
+                        {% if c.pk in info and message_type == 'conglomerate' %}checked{% endif %}>{{ c.name }} - Last updated {{ c.last_updated }} - pk {{ c.pk }}
                       </li>
                       {% endfor %}
                   </ul>
             </div>
 
-            <div id="Paris" class="w3-container city" style="display:none">
+            <div id="Product" class="tabcontent approval" style="display:none">
               <ul>
                   {% for p in products %}
                   <li {% if not p.approved_edit %} style="color: #ce2342;" {% endif %}>
                     <input type="checkbox" name="checkbox" value="{{ p.pk }}"
-                    {% if p.pk in info %}checked{% endif %}>{{ p.name }} Last updated {{ p.last_updated }}
+                    {% if p.pk in info and message_type == 'product' %}checked{% endif %}>{{ p.name }} - Last updated {{ p.last_updated }} - pk {{p.pk}}
                     {% if p.approved_edit %}  {% else %} {% endif %}</li>
                   {% endfor %}
               </ul>
@@ -83,33 +86,44 @@
           </div>
 
     </div>
+    <div class="col-2"></div>
 </div>
-<div class="centered">
+<div class="col-12 centered">
   <button type="submit" name="action_1" value="checkboxes">Submit</button>
 </div>
 
 
 
-  <script>
+<script>
   function openCity(evt, cityName) {
-    var i, x, tablinks;
-    x = document.getElementsByClassName("city");
-    for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablink");
-    for (i = 0; i < x.length; i++) {
-       tablinks[i].className = tablinks[i].className.replace(" w3-border-red", "");
-    }
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.firstElementChild.className += " w3-border-red";
+      // Declare all variables
+      var i, tabcontent, tablinks;
+
+      // Get all elements with class="tabcontent" and hide them
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+      }
+
+      // Get all elements with class="tablinks" and remove the class "active"
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+
+      // Show the current tab, and add an "active" class to the link that opened the tab
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
   }
-  </script>
+//Get element...defaultOpen
+document.getElementById("defaultOpen").click();
+
+</script>
 
 
 
 <!-- Lower half of page -->
-
+{% if zipped != "" %}
 <div>
     {% if message_1 == "" %}
     <h4 class="col-12 centered">{{ message_0 }}</h4>
@@ -158,7 +172,7 @@
     </div>
 </div>
 
-
+{% endif %}
 
 
 

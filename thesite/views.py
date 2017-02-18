@@ -104,7 +104,7 @@ def submit_verification_conglom(request, pk):
 # todo - prevent people trying to compare a product and a conglom
 def compare_edits(request):
     data = { 'products': Product.objects.all(), 'conglomerates': Conglomerate.objects.all(),'info' : [],
-             'message_0': "Nothing choosen", 'message_1': "", 'style': "", 'l_left': "", 'l_right': "",
+             'message_0': "Nothing choosen", 'message_1': "", 'message_type': "", 'style': "", 'l_left': "", 'l_right': "",
              'zipped': "", 'zipped_repeat': ""}
     if request.method == 'POST':
         # Form 1 - for getting info from checkbox
@@ -114,7 +114,7 @@ def compare_edits(request):
             data = helpers.compare_with_colors_and_make_data_dic(info, data)
         else:
             data = { 'products': Product.objects.all(), 'conglomerates': Conglomerate.objects.all(),'info' : [],
-                     'message_0': "Nothing choosen", 'message_1': "", 'style': "", 'l_left': "", 'l_right': "",
+                     'message_0': "Nothing choosen", 'message_1': "", 'message_type': "", 'style': "", 'l_left': "", 'l_right': "",
                      'zipped': "", 'zipped_repeat': ""}
             data['message_0'] = "Choose two boxes please"
         # Form 2 - for updating the information of a product/conglomerate
